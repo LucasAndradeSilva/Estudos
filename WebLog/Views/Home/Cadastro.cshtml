@@ -1,0 +1,106 @@
+﻿@model WebLog.Models.Entities.Usuario
+@{
+    ViewData["Title"] = "Cadastro";
+
+    string msg = ViewBag.Message;
+    List<WebLog.Models.Entities.ListUsuarios> user = ViewBag.List;
+}
+
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#colCad" role="button" aria-expanded="false" aria-controls="collapseExample">Adicionar Novo Usuario</a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#colList" role="button" aria-expanded="true" aria-controls="collapseExample">Lista de Usuarios</a>
+    </p>
+@{
+    if (!string.IsNullOrEmpty(msg))
+    {
+        <div class="alert alert-success fade show" id="success-alert" style="margin-top: 40px;">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>@ViewBag.Message</strong>
+        </div>
+    }
+}
+<div class="collapse" id="colCad">
+    <div class="card card-body">
+        <h3>CADASTRO</h3>
+        <hr />
+        <form asp-action="Cadastro" asp-controller="Home" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idade" class="control-label"></label>
+                <input asp-for="Idade" class="form-control" />
+                <span asp-validation-for="Idade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input name="txtEmail" type="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Senha</label>
+                <input name="txtpass" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<div class="collapse" id="colList">
+    <div class="card card-body">
+        <h3>LISTA DE USUARIOS</h3>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Idade
+                    </th>
+                    <th>
+                        CPF
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in user)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Idade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>                            
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary" })                         
+                            @Html.ActionLink("Deletar", "Deletar", new { id=item.idUser }, new { @class ="btn btn-danger", @onclick="return confirm('Deseja realmente excluir este produto?');"})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

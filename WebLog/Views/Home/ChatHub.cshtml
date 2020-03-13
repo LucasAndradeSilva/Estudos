@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "chatHub";
+    var Email = Context.Session.GetUsuario().Email;
+}
+
+<h1>Chat</h1>
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-2">Usuario</div>
+        <div class="col-4 "><input type="text" class="form-control" id="userInput" disabled value="@Email" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Menssagem</div>
+        <div class="col-4 "><input type="text" id="messageInput" class="form-control" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Enviar" class="btn btn-success form-control" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <tdbody class="col-6" id="messagesList">
+        
+    </tdbody>
+</div>
+<script src="~/Hub/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

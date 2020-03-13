@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+    var Erro = ViewBag.erro;
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+
+</head>
+
+<body class="text-center">
+    <style>
+        .erro {
+            border: solid red 1px;
+        }
+    </style>
+
+
+    @if (!string.IsNullOrEmpty(Erro))
+    {
+        <div class="alert alert-danger fade show" id="success-alert" style="margin-top: 40px;">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>@Erro</strong>
+        </div>
+    }
+    <form class="form-signin" id="fale-conosco-fmr" style="margin: 40px 20% 0px 20%;" method="post" action="@Url.Action("Logar","Home")">
+        @*asp-action="Login" asp-controller="Home"*@
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="json" />
+
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+
+        <input type="email" id="inputEmail" name="txtEmail" class="form-control" placeholder="Email address" required="" autofocus="" value="Lucas@gmail.com">
+
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input type="password" id="inputPassword" name="txtPass" class="form-control" placeholder="Password" required="" value="123">
+
+        @* Captha *@
+        <div class="checkbox mb-3">
+            <div class="g-recaptcha" data-sitekey="@Captha.SiteKey()"></div>
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="ENTRAR">
+
+        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+    </form>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* Link Scripty ReCaptcha *@
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <script>
+
+            function getFormJson($form) {
+                var propValue = $form.serializeArray();
+                var result = {};
+                $.map(propValue, function (prop, i) {
+                    result[prop['name']] = prop['value'];
+                });
+                return JSON.stringify(result);
+            }
+
+            $('#fale-conosco-fmr').find('input[type="submit"]').click(function (e) {
+                e.preventDefault();
+                $('#fale-conosco-fmr').find('input').blur();
+                if ($('.erro:visible').length > 0) {
+                    alert('Complete o formulario');
+                    return;
+                }
+                $('input[name="json"]').val(getFormJson($('#fale-conosco-fmr')));
+                $('#fale-conosco-fmr').submit();
+            });
+            $('#fale-conosco-fmr').find('textarea, input:not([type="submit"])').blur(function () {
+                var $obj = $(this);
+                var min = $obj.attr('minlength') != undefined ? Math.round($obj.attr('minlength')) : 0;
+                if ($obj.val().length < min)
+                    $obj.addClass('erro');
+                else
+                    $(this).removeClass('erro');
+            });
+            $('input[name="CNPJ"]').blur(function () {
+                if (!validarCNPJ($(this).val()))
+                    $(this).addClass('erro');
+                else
+                    $(this).removeClass('erro');
+            });
+
+        </script>
+  
+</body>
+</html>
+
