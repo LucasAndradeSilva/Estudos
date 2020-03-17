@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace WebLog.Controllers
 {
+    [Autenticacao]
     public class HomeController : Controller 
     {
         private readonly IReCaptcha reCaptcha;
@@ -31,36 +32,7 @@ namespace WebLog.Controllers
         public IActionResult ChatHub()
         {
             return View();
-        }
-
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        public IActionResult Logar(string json)
-        {
-            var formulario = JObject.Parse(json);
-            if (!reCaptcha.ValidarCaptcha(formulario["g-recaptcha-response"].ToString()))
-            {             
-                return View();
-            }
-            else
-            {
-                ListUsuarios login = _usuarioRepository.Logar(new Login() { Email = formulario["txtEmail"].ToString(), Senha = formulario["txtPass"].ToString() });
-                if (login != null)
-                {
-                    HttpContext.Session.Set(login);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.erro = "Usuario ou senha estão incorretos!";
-                    return View();
-                }
-            }
-
-        }
+        }    
 
         public IActionResult Cadastro()
         {

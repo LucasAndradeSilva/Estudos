@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Login";
     Layout = null;
-    var Erro = ViewBag.erro;
+      var Erro = !string.IsNullOrEmpty(ViewBag.erro) ? ViewBag.erro : "";
+    Erro = !string.IsNullOrEmpty(Erro) ? Erro : Context.Session.GetString("msg");
 }
 <html lang="en">
 <head>
@@ -40,8 +41,7 @@
             <strong>@Erro</strong>
         </div>
     }
-    <form class="form-signin" id="fale-conosco-fmr" style="margin: 40px 20% 0px 20%;" method="post" action="@Url.Action("Logar","Home")">
-        @*asp-action="Login" asp-controller="Home"*@
+    <form class="form-signin" id="fale-conosco-fmr" style="margin: 40px 20% 0px 20%;" method="post" action="@Url.Action("Logar","Login")">     
         @Html.AntiForgeryToken()
         <input type="hidden" name="json" />
 
