@@ -74,9 +74,28 @@ namespace WebLog.DB.Repository
             }
         }
 
-        public Usuario GetUsuario(int id)
+        public ListUsuarios GetUsuario(int id)
         {
-            throw new NotImplementedException();
+            using (var con = new SqlConnection(Connection))
+            {
+                ListUsuarios usuario = new ListUsuarios();
+                try
+                {
+                    con.Open();
+                    usuario = con.QuerySingle<ListUsuarios>("select * from tbUsuario inner join tbLogin on tbLogin.Id_User = tbUsuario.idUser where  tbUsuario.idUser = @Id; ", new { Id = id });
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+
+                return usuario;
+            }
         }
 
         public int Edit(Usuario usuario)
@@ -112,11 +131,11 @@ namespace WebLog.DB.Repository
         {
             using (var con = new SqlConnection(Connection))
             {
-                ListUsuarios login1 = new ListUsuarios();
+                ListUsuarios usuario = new ListUsuarios();
                 try
                 {
                     con.Open();
-                    login1 = con.QuerySingle<ListUsuarios>("select * from tbUsuario inner join tbLogin on tbLogin.Id_User = tbUsuario.idUser where tbLogin.Email = @Email and tbLogin.Senha = @Senha; ", new { Email = login.Email, Senha = login.Senha });
+                    usuario = con.QuerySingle<ListUsuarios>("select * from tbUsuario inner join tbLogin on tbLogin.Id_User = tbUsuario.idUser where tbLogin.Email = @Email and tbLogin.Senha = @Senha; ", new { Email = login.Email, Senha = login.Senha });
                     con.Close();
                 }
                 catch (Exception ex)
@@ -128,7 +147,7 @@ namespace WebLog.DB.Repository
                     con.Dispose();
                 }
 
-                return login1;
+                return usuario;
             }
         }
     }

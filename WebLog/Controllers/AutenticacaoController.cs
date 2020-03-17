@@ -14,7 +14,7 @@ namespace WebLog.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Login", "Login");
         }
     }
 }

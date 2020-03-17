@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Login";
     Layout = null;
-      var Erro = !string.IsNullOrEmpty(ViewBag.erro) ? ViewBag.erro : "";
+    var Erro = !string.IsNullOrEmpty(ViewBag.erro) ? ViewBag.erro : "";
     Erro = !string.IsNullOrEmpty(Erro) ? Erro : Context.Session.GetString("msg");
 }
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
+    <link rel="stylesheet" href="~/css/Login.css" />
     <title>Signin Template for Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
@@ -47,7 +47,7 @@
 
         <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 id="loga">Please sign in</h1>
 
         <label for="inputEmail" class="sr-only">Email address</label>
 
@@ -63,7 +63,7 @@
         </div>
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="ENTRAR">
 
-        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+        <p id="footer">© 2017-2020</p>
     </form>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

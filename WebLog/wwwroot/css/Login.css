@@ -1,0 +1,18 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/img/b2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#footer{
+   color:white;
+   margin-top: 50px;
+}
+
+#loga {
+    color: white;
+}

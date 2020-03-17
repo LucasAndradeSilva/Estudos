@@ -1,15 +1,16 @@
 ﻿@model WebLog.Models.Entities.Usuario
 @{
-    ViewData["Title"] = "Cadastro";
-
+    ViewData["Title"] = "Cadastro";   
     string msg = ViewBag.Message;
     List<WebLog.Models.Entities.ListUsuarios> user = ViewBag.List;
+
+    //int idClick
 }
 
-    <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#colCad" role="button" aria-expanded="false" aria-controls="collapseExample">Adicionar Novo Usuario</a>
-        <a class="btn btn-primary" data-toggle="collapse" href="#colList" role="button" aria-expanded="true" aria-controls="collapseExample">Lista de Usuarios</a>
-    </p>
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#colCad" role="button" aria-expanded="false" aria-controls="collapseExample">Adicionar Novo Usuario</a>
+    <a class="btn btn-primary" data-toggle="collapse" href="#colList" role="button" aria-expanded="true" aria-controls="collapseExample">Lista de Usuarios</a>
+</p>
 @{
     if (!string.IsNullOrEmpty(msg))
     {
@@ -25,7 +26,7 @@
         <hr />
         <form asp-action="Cadastro" asp-controller="Home" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
@@ -54,11 +55,11 @@
         </form>
     </div>
 </div>
-<br/>
+<br />
 <div class="collapse" id="colList">
     <div class="card card-body">
         <h3>LISTA DE USUARIOS</h3>
-        <hr />
+
         <table class="table">
             <thead>
                 <tr>
@@ -93,9 +94,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
-                        <td>                            
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary" })                         
-                            @Html.ActionLink("Deletar", "Deletar", new { id=item.idUser }, new { @class ="btn btn-danger", @onclick="return confirm('Deseja realmente excluir este produto?');"})
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="EditarUsuario(@item.idUser);" data-target="#editModal">
+                                Editar
+                            </button>
+                            @Html.ActionLink("Deletar", "Deletar", new { id = item.idUser }, new { @class = "btn btn-danger", @onclick = "return confirm('Deseja realmente excluir este produto?');" })
                         </td>
                     </tr>
                 }
@@ -104,3 +107,61 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Nome</label>
+                                <input id="editNome" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Idade</label>
+                                <input id="editIdade" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">CPF</label>
+                                <input id="editCpf" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Email</label>
+                                <input id="editEmail" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Senha</label>
+                                <input id="editSenha" class="form-control" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <a href="#" class="btn btn-success">Atualizar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function EditarUsuario(idUsuario) {
+        $.post('@Url.Action("PreecheEditar","Home")', { id: idUsuario }, function (dadosUsuario) {
+            $('#editNome').val(dadosUsuario.nome);
+            $('#editIdade').val(dadosUsuario.idade);
+            $('#editCpf').val(dadosUsuario.cpf);
+            $('#editEmail').val(dadosUsuario.email);
+            $('#editSenha').val(dadosUsuario.senha);
+        });
+    }
+</script>

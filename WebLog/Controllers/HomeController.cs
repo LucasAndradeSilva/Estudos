@@ -66,6 +66,18 @@ namespace WebLog.Controllers
             return RedirectToAction("Cadastro");
         }
 
+        public IActionResult PreecheEditar(int id)
+        {
+            var usuario = _usuarioRepository.GetUsuario(id);
+            if (usuario != null)
+            {
+                return Json(usuario);
+            }
+
+            return null;
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
