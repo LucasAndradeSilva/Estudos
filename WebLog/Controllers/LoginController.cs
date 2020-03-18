@@ -25,6 +25,7 @@ namespace WebLog.Controllers
 
         public IActionResult Login()
         {
+            ViewBag.erro = TempData["Erro"];
             return View();
         }
 
@@ -45,8 +46,8 @@ namespace WebLog.Controllers
                 }
                 else
                 {
-                    ViewBag.erro = "Usuario ou senha estão incorretos!";
-                    return View();
+                    TempData["Erro"] = "Usuario ou senha estão incorretos!";
+                    return RedirectToAction("Login");
                 }
             }
 
