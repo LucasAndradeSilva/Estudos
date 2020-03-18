@@ -92,21 +92,6 @@
                 $('input[name="json"]').val(getFormJson($('#fale-conosco-fmr')));
                 $('#fale-conosco-fmr').submit();
             });
-            $('#fale-conosco-fmr').find('textarea, input:not([type="submit"])').blur(function () {
-                var $obj = $(this);
-                var min = $obj.attr('minlength') != undefined ? Math.round($obj.attr('minlength')) : 0;
-                if ($obj.val().length < min)
-                    $obj.addClass('erro');
-                else
-                    $(this).removeClass('erro');
-            });
-            $('input[name="CNPJ"]').blur(function () {
-                if (!validarCNPJ($(this).val()))
-                    $(this).addClass('erro');
-                else
-                    $(this).removeClass('erro');
-            });
-
         </script>
   
 </body>

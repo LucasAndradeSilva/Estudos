@@ -98,9 +98,27 @@ namespace WebLog.DB.Repository
             }
         }
 
-        public int Edit(Usuario usuario)
+        public string Edit(ListUsuarios usuario)
         {
-            throw new NotImplementedException();
+            using (var con = new SqlConnection(Connection))
+            {              
+                try
+                {
+                    con.Open();
+                    usuario = con.Execute("select * from tbUsuario inner join tbLogin on tbLogin.Id_User = tbUsuario.idUser where  tbUsuario.idUser = @Id; ", new { Id = id });
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    return "Erro ao realizar as alterações: "+ex.Message;
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+
+                return "Alterações realizadas com Sucesso!";
+            }
         }
 
         public int Delete(int id)

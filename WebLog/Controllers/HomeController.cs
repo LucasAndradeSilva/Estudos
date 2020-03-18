@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebLog.Common.ReCaptha;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace WebLog.Controllers
 {
@@ -60,7 +61,7 @@ namespace WebLog.Controllers
             if (count > 0)
             {
                msg = "Usuario deletado com Sucesso!";
-                return RedirectToAction("Cadastro");
+               return RedirectToAction("Cadastro");
             }
 
             return RedirectToAction("Cadastro");
@@ -77,7 +78,20 @@ namespace WebLog.Controllers
             return null;
         }
 
-
+        public IActionResult Editar(string json)        
+        {
+            var formulario = JObject.Parse(json);
+            
+            msg = _usuarioRepository.Edit(new ListUsuarios { 
+                idUser = Convert.ToInt32(formulario["txtId"]),
+                Nome = formulario["txtNome"].ToString(),
+                Idade = Convert.ToInt32(formulario["txtIdade"]),
+                CPF = formulario["txtCpf"].ToString(),
+                Email = formulario["txtEmail"].ToString(),
+                Senha = formulario["txtSenha"].ToString()
+            });
+           return RedirectToAction("Cadastro"); 
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

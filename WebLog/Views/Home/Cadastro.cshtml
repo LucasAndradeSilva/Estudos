@@ -1,10 +1,8 @@
 ﻿@model WebLog.Models.Entities.Usuario
 @{
-    ViewData["Title"] = "Cadastro";   
+    ViewData["Title"] = "Cadastro";
     string msg = ViewBag.Message;
-    List<WebLog.Models.Entities.ListUsuarios> user = ViewBag.List;
-
-    //int idClick
+    List<WebLog.Models.Entities.ListUsuarios> user = ViewBag.List;   
 }
 
 <p>
@@ -14,7 +12,7 @@
 @{
     if (!string.IsNullOrEmpty(msg))
     {
-        <div class="alert alert-success fade show" id="success-alert" style="margin-top: 40px;">
+        <div class="alert alert-success show" id="success-alert" style="margin-top: 40px;">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>@ViewBag.Message</strong>
         </div>
@@ -117,51 +115,95 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <form>
-                            <div class="form-group">
-                                <label class="control-label">Nome</label>
-                                <input id="editNome" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Idade</label>
-                                <input id="editIdade" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">CPF</label>
-                                <input id="editCpf" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Email</label>
-                                <input id="editEmail" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Senha</label>
-                                <input id="editSenha" class="form-control" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <a href="#" class="btn btn-success">Atualizar</a>
-            </div>
+            <div class="modal-body">    
+                <div class="col">
+                    <form method="post" action="@Url.Action("Editar", "Home")" id="form_editar">
+                        <input type="hidden" name="json" />
+                        <input type="hidden" id="pegaId" name="txtId"/>
+
+                        <div class="form-group">
+                            <label class="control-label">Nome</label>
+                            <input id="editNome" name="txtNome" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Idade</label>
+                            <input id="editIdade" name="txtIdade" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">CPF</label>
+                            <input id="editCpf" name="txtCpf" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input id="editEmail" name="txtEmail" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Senha</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <input type="button" class="input-group-text" id="btnExibir" value="Exibir">
+                                </div>
+                                <input type="password" id="editSenha" name="txtSenha" class="form-control" />
+                            </div>                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <input type="submit" class="btn btn-success" value="Atualizar">
+                        </div>
+                    </form>
+                </div>                
+            </div>          
         </div>
     </div>
 </div>
 
 
 <script>
+    //Metodo que pega os dados de um controler sem atualizar a pagina
     function EditarUsuario(idUsuario) {
-        $.post('@Url.Action("PreecheEditar","Home")', { id: idUsuario }, function (dadosUsuario) {
+        $.post('@Url.Action("PreecheEditar", "Home")', { id: idUsuario }, function (dadosUsuario) {
             $('#editNome').val(dadosUsuario.nome);
             $('#editIdade').val(dadosUsuario.idade);
             $('#editCpf').val(dadosUsuario.cpf);
             $('#editEmail').val(dadosUsuario.email);
             $('#editSenha').val(dadosUsuario.senha);
+            $('#pegaId').val(dadosUsuario.idUser);
+        });        
+    
+
+        //Pega os dados do form e convert para json
+        function getFormJson($form) {
+            var propValue = $form.serializeArray();
+            var result = {};
+            $.map(propValue, function (prop, i) {
+                result[prop['name']] = prop['value'];
+            });
+            return JSON.stringify(result);
+        }
+ 
+        $('#form_editar').find('input[type="submit"]').click(function (e) {
+            e.preventDefault();
+            $('#form_editar').find('input').blur();
+
+            if ($('#editNome').val() === "" || $('#editIdade').val() === "" || $('#editCpf').val() === "" || $('#editEmail').val() === "" || $('#editSenha').val() === "") {
+                alert("Preenche todos os campos!");
+                return null;
+            }
+            $('input[name="json"]').val(getFormJson($('#form_editar')));
+            $('#form_editar').submit();
         });
+
+        $('#btnExibir').on('click', function () {            
+            var txtSenha = $('#editSenha');
+
+            if (txtSenha.attr('type') == 'password') {
+                txtSenha.attr('type', 'text');
+                $('#btnExibir').val('Ocultar');
+            }
+            else {
+                txtSenha.attr('type', 'password');
+                $('#btnExibir').val('Exibir');
+            }
+        });  
     }
 </script>

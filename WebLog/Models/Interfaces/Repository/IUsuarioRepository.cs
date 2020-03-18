@@ -11,7 +11,7 @@ namespace WebLog.Models.Interfaces.Repository
         int Add(Usuario usuario, Login login);
         List<ListUsuarios> GetUsuarios();
         ListUsuarios GetUsuario(int id);
-        int Edit(Usuario usuario);
+        string Edit(ListUsuarios usuario);
         int Delete(int id);
         ListUsuarios Logar(Login login);
     }
