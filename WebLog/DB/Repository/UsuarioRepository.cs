@@ -101,11 +101,12 @@ namespace WebLog.DB.Repository
         public string Edit(ListUsuarios usuario)
         {
             using (var con = new SqlConnection(Connection))
-            {              
+            {
+                int count = 0;
                 try
                 {
                     con.Open();
-                    usuario = con.Execute("select * from tbUsuario inner join tbLogin on tbLogin.Id_User = tbUsuario.idUser where  tbUsuario.idUser = @Id; ", new { Id = id });
+                    count = con.Execute("Execute Editar @Nome, @Idade, @CPF, @Email, @Senha, @Id;", new { Nome = usuario.Nome, Idade = usuario.Idade, CPF = usuario.CPF, Email = usuario.Email, Senha = usuario.Senha, Id = usuario.idUser });
                     con.Close();
                 }
                 catch (Exception ex)

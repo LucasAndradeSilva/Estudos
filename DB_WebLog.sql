@@ -36,3 +36,5 @@ as
 	update tbLogin set Email = @var_Email, Senha = @var_Senha
 	where tbLogin.Id_User = @var_Id;
 go
+
+Execute Editar 'Lucas'

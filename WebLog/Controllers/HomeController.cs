@@ -37,7 +37,7 @@ namespace WebLog.Controllers
 
         public IActionResult Cadastro()
         {
-            ViewBag.Message = msg;
+            ViewBag.Message = string.IsNullOrEmpty(msg) ? TempData["msg"] : msg;
             ViewBag.List = _usuarioRepository.GetUsuarios();
             return View();
         }
@@ -82,7 +82,7 @@ namespace WebLog.Controllers
         {
             var formulario = JObject.Parse(json);
             
-            msg = _usuarioRepository.Edit(new ListUsuarios { 
+            TempData["msg"]  = _usuarioRepository.Edit(new ListUsuarios { 
                 idUser = Convert.ToInt32(formulario["txtId"]),
                 Nome = formulario["txtNome"].ToString(),
                 Idade = Convert.ToInt32(formulario["txtIdade"]),
