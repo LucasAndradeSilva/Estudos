@@ -30,6 +30,11 @@ namespace WebLog.Controllers
             return View();
         }
 
+        public IActionResult FaleConosco()
+        {
+            return View();
+        }
+
         public IActionResult ChatHub()
         {
             return View();

@@ -34,7 +34,8 @@ namespace WebLog.Controllers
             var formulario = JObject.Parse(json);
             if (!reCaptcha.ValidarCaptcha(formulario["g-recaptcha-response"].ToString()))
             {
-                return View();
+                TempData["Erro"] = "Captcha Inválido!";
+                return RedirectToAction("Login");             
             }
             else
             {
