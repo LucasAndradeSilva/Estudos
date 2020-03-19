@@ -5,77 +5,83 @@
 
 
 <style>
-.form-contact {
-  width: 100%;
-  font-family: "Arial", Times, serif;
-}
+    .form-contact {
+        width: 100%;
+        font-family: "Arial", Times, serif;
+    }
 
-.form-contact-input {
-  width: 100%;
-  color: #292929;
-  font-size: 18px;
-  background-color: #E9E9E9;
-  border: 1px solid #E9E9E9;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  height: 40px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  text-indent: 20px;
-}
+    .form-contact-input {
+        width: 100%;
+        color: #292929;
+        font-size: 18px;
+        background-color: #E9E9E9;
+        border: 1px solid #E9E9E9;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        height: 40px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        text-indent: 20px;
+    }
 
-.form-contact-textarea {
-  width: 100%;
-  color: #292929;
-  font-size: 18px;
-  background-color: #E9E9E9;
-  border: 1px solid #E9E9E9;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  height: 200px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  text-indent: 20px;
-  padding-top: 16px;
-  padding-left: 0;
-  padding-right: 0;
-  font-family: "Arial", Times, serif;
-}
+    .form-contact-textarea {
+        width: 100%;
+        color: #292929;
+        font-size: 18px;
+        background-color: #E9E9E9;
+        border: 1px solid #E9E9E9;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        height: 200px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        text-indent: 20px;
+        padding-top: 16px;
+        padding-left: 0;
+        padding-right: 0;
+        font-family: "Arial", Times, serif;
+    }
 
-.form-contact-button {
-  width: 100%;
-  font-size: 18px;
-  border-radius: 4px;
-  color: #fff;
-  height: 40px;
-  opacity: .8;
-  margin-bottom: 20px;
-  cursor: pointer;
-  background: #B22222;
-  display: block;
-  border: none;
-  border-bottom: 1px solid #500707;
-  border-right: 1px solid #500707;
-  transition: 1s;
-}
+    .form-contact-button {
+        width: 100%;
+        font-size: 18px;
+        border-radius: 4px;
+        color: #fff;
+        height: 40px;
+        opacity: .8;
+        margin-bottom: 20px;
+        cursor: pointer;
+        background: #B22222;
+        display: block;
+        border: none;
+        border-bottom: 1px solid #500707;
+        border-right: 1px solid #500707;
+        transition: 1s;
+    }
 
-.form-contact-button:hover {
-  opacity: 1;
-}
+        .form-contact-button:hover {
+            opacity: 1;
+        }
 
-.form-style{
-    background-color: white;
-    box-shadow: 0px 0px 10px 0px #000000;
-}
+    .form-style {
+        background-color: white;
+        box-shadow: 0px 0px 10px 0px #000000;
+    }
+
+    #mapa {
+        top: 30px;
+        margin-left: 30px;
+        margin-bottom: 30px;
+    }
 </style>
 
 
 <div class="container form-style">
-    <h1>FaleConosco</h1>    
+    <h1>Fale Conosco</h1>
     <form action="#" class="form-contact" method="post" tabindex="1">
         <hr />
         <input type="text" class="form-contact-input" name="nome" placeholder="Nome" required />
@@ -85,5 +91,16 @@
         <hr />
         <button type="submit" class="form-contact-button">Enviar</button>
     </form>
-    <br/>
-</div> 
+    <br />
+</div>
+<br /><br />
+<div class="form-style" >
+    <div id="mapa">
+        <h1>Endereço</h1>
+        <h4>Visão Grupo, Av. Paulista, 1765 - CJ 32 - Cerqueira César, São Paulo - SP, 01311-200</h4>
+        <a href="https://www.google.com.br/maps/place/Vis%C3%A3o+Grupo/-23.5607751,-46.6600547,17z/data=!3m1!4b1!4m5!3m4!1s0x94ce59cc28a84a25:0xa888c0a00ae3f55a!8m2!3d-23.56078!4d-46.657866?hl=pt-BR" class="btn btn-primary">Como Chegar</a>
+        <hr />
+        <img src="~/img/map.png">
+        <br />
+    </div>
+</div>
