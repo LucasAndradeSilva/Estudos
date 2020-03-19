@@ -22,16 +22,10 @@
 
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
-
-
+    
 </head>
-
 <body class="text-center">
-    <style>
-        .erro {
-            border: solid red 1px;
-        }
-    </style>
+    
 
 
     @if (!string.IsNullOrEmpty(Erro))
@@ -45,7 +39,7 @@
         @Html.AntiForgeryToken()
         <input type="hidden" name="json" />
 
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <img class="mb-4 stylie" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 
         <h1 id="loga">Login</h1>
 

@@ -16,3 +16,144 @@
 #loga {
     color: white;
 }
+
+.stylie {
+    -moz-animation-name: stylie-transform-keyframes;
+    -moz-animation-duration: 5000ms;
+    -moz-animation-delay: 0ms;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 0 0;
+    -ms-animation-name: stylie-transform-keyframes;
+    -ms-animation-duration: 5000ms;
+    -ms-animation-delay: 0ms;
+    -ms-animation-fill-mode: forwards;
+    -ms-animation-timing-function: linear;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 0 0;
+    -webkit-animation-name: stylie-transform-keyframes;
+    -webkit-animation-duration: 5000ms;
+    -webkit-animation-delay: 0ms;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 0 0;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 5000ms;
+    animation-delay: 0ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+}
+
+@-moz-keyframes stylie-transform-keyframes {
+    0% {
+        -moz-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -moz-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    20% {
+        -moz-transform: translate(400px, 2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -moz-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    60% {
+        -moz-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -moz-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    80% {
+        -moz-transform: translate(-390px, -1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -moz-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    100% {
+        -moz-transform: translate(-1px, 1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    }
+}
+
+@-ms-keyframes stylie-transform-keyframes {
+    0% {
+        -ms-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -ms-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    20% {
+        -ms-transform: translate(400px, 2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -ms-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    60% {
+        -ms-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -ms-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    80% {
+        -ms-transform: translate(-390px, -1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -ms-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    100% {
+        -ms-transform: translate(-1px, 1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    }
+}
+
+@-webkit-keyframes stylie-transform-keyframes {
+    0% {
+        -webkit-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -webkit-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    20% {
+        -webkit-transform: translate(400px, 2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -webkit-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    60% {
+        -webkit-transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -webkit-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    80% {
+        -webkit-transform: translate(-390px, -1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        -webkit-animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    100% {
+        -webkit-transform: translate(-1px, 1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    }
+}
+
+@keyframes stylie-transform-keyframes {
+    0% {
+        transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    20% {
+        transform: translate(400px, 2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    60% {
+        transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    80% {
+        transform: translate(-390px, -1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+        animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    100% {
+        transform: translate(-1px, 1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    }
+}
+
+html::after {
+    content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel);
+    position: absolute;
+    left: -999em;
+}
